@@ -1,0 +1,93 @@
+<div >
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
+
+    <a class="navbar-brand" href="#"><b style="color:white">MY School</b></a>
+
+    
+
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContentt" aria-controls="navbarSupportedContentt" aria-expanded="true" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>-->
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContentt">
+      <ul class="navbar-nav mr-auto"  >
+        <li class="nav-item active">
+          <a class="nav-link" href="/mkmk">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/hbranch">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/addClass">addClass</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="dropdown-item"><a class="nav-link" href="/updorg">Update Organization</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/addorg">Add Organization</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/org">Organization</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/lisibranch">Branch List</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/addbr">Add Branch</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/stImg">Student Image</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/stlist">Student List</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/department">department</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/teacherreg">teacherreg</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/teacherlist">teacherlist</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/movest">Move Student</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/roles">Roles</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/attend">attend</a></li>
+            <li class="dropdown-item"><a class="nav-link" href="/stdashboard">Student Dashboard</a></li>
+
+
+                <li class="dropdown-item"><a class="nav-link" href="/addsubject">addsubject</a></li>
+
+            <li class="dropdown-item" ><a class="nav-link" href="/tdashboard">tdashboard</a></li>
+            <li class="dropdown-item" ><a class="nav-link" href="/addstmessage">addstmessage</a></li>
+            <li class="dropdown-item" ><a class="nav-link" href="/viewstmessages">viewgmessage</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="dropdown-item" href="#">Action</li>
+            <li class="dropdown-item" href="#">Another action</li>
+            <li class="dropdown-item" href="#">Something else here</li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+    </div>
+    @if(user === undefined){
+    <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+      <li class="mx-2"> <a mat-raised-button color="primary" href="/register">Register</a></li>
+      <li class="mx-2"> <a mat-raised-button color="primary" href="/login">Login</a></li>
+    </ul>
+
+    }
+    @else{
+    <ul class=" navbar-nav flex-row flex-wrap ms-md-auto">
+
+      <li class="mx-2"> <button mat-raised-button color="primary" (click)="onlogout()">Logut</button></li>
+      <li class="mt-2 m-2"><span>{{email}}kk</span></li>
+
+    </ul>
+
+    }
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContentt" aria-controls="navbarSupportedContentt" aria-expanded="true" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+
+</div>

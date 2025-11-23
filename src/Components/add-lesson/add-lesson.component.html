@@ -1,0 +1,157 @@
+
+<div class="flex justify-between items-center mb-4 gap-3 mt-2">
+
+
+@if(isvideoModalVisible && !isFileModalVisible) {
+  <button mat-fab extended class="btn btn-success mx-2" (click)="openvideomodal()" type="button">Add Lesson Video</button>
+  <button mat-fab extended class="btn btn-danger mx-2" (click)="openFileModal()" type="button">Add Lesson File</button>
+}
+@else if(!isvideoModalVisible && isFileModalVisible) {
+  <button mat-fab extended class="btn btn-danger mx-2" (click)="openvideomodal()" type="button">Add Lesson Video</button>
+  <button mat-fab extended class="btn btn-success mx-2" (click)="openFileModal()" type="button">Add Lesson File</button>
+}
+</div>
+
+
+<section class="st-modal" [ngClass]="{'d-block':isvideoModalVisible,'d-none': !isvideoModalVisible}">
+<div class="row justify-content-md-center">
+<div class="col-7 bg-base-100 w-1/2 mx-5 mt-5 flex flex-col p-6 rounded-lg shadow-lg"  style="width: 50%;">
+  <h2 class="text-2xl font-bold mb-4 text-center">Add Lesson Video</h2>
+  <form  [formGroup]="addVideoModel" (ngSubmit)="onVideoLessonSubmit()" class="mx-5">
+    <div class="mb-4">
+      <label for="title" class="block text-sm font-bold mb-2">Title</label>
+      <input type="text" id="title" formControlName="title" required class="form-control">
+    </div>
+    <div class="mb-4">
+      <label for="description" class="block text-sm font-bold mb-2">Description</label>
+    <!-- new line -->
+
+      <textarea id="description" formControlName="description" required class="form-control"></textarea>
+    </div>
+
+    <div class="mb-4">
+    <label for="classGId" class="block text-sm font-bold mb-2">Class</label>
+    <select id="classGId" formControlName="classGId" required class="form-control">
+      <option *ngFor="let teacherC of teacherList" [value]="teacherC.classNames.id">{{ teacherC.classNames.name }}</option>
+    </select>
+    </div>
+
+    <div class="mb-4">
+    <label for="subjectId" class="block text-sm font-bold mb-2">Subject</label>
+    <select id="subjectId" formControlName="subjectId" required class="form-control">
+      <option *ngFor="let teacherS of teacherList" [value]="teacherS.subject.id">{{ teacherS.subject.name }}</option>
+    </select>
+    </div>
+    <div class="mb-4">
+    <label for="isAvailable" class="block text-sm font-bold mb-2">Is Available</label>
+    <input type="checkbox" id="isAvailable" formControlName="isAvailable" class="form-checkbox mx-2">
+    </div>
+
+     <div>
+        <label for="vFile">Upload Video:</label>
+        <input id="vFile" type="file" (change)="onVideoFileSelected($event, 'VFile')" />
+      </div>
+    <button type="submit" class="btn btn-primary mb-5">Add Lesson Video<i class="fa fa-video-camera mx-lg-2" aria-hidden="true"></i></button>
+</form>
+ <div >
+    @if(responseMessage) {
+      <p>{{ responseMessage }}</p>
+    }
+  </div>
+</div>
+    </div>
+</section>
+ <section class="st-modal" [ngClass]="{'d-block':isFileModalVisible,'d-none': !isFileModalVisible}">
+    <div class="row justify-content-md-center ">
+<div class="col-7 bg-base-100 w-1/2 mx-5 mt-5 flex flex-col p-6 rounded-lg shadow-lg"  style="width: 50%;">
+  <h2 class="text-2xl font-bold mb-4 text-center">Add Lesson File</h2>
+  <form class="mx-5" (ngSubmit)="onFileLessonSubmit()" #fileLessonForm="ngForm">
+    <div class="mb-4">
+      <label for="title" class="block text-sm font-bold mb-2" >Title</label>
+      <input type="text" id="title" name="title" ngModel required class="form-control" #titleInput="ngModel" [(ngModel)]="addFileModel.title">
+       @if (titleInput.invalid && (titleInput.dirty || titleInput.touched)) {
+            <div class="alert">
+              @if (titleInput.hasError('required')) {
+                <div >
+                  <p class="text-danger">Name is required.</p>
+                </div>
+              }
+            
+            </div>
+          }
+    </div>
+    <div class="mb-4">
+      <label for="description" class="block text-sm font-bold mb-2">Description</label>
+    <!-- new line -->
+
+      <textarea id="description" name="description" ngModel required class="form-control" [(ngModel)]="addFileModel.description" #descriptionInput="ngModel"></textarea>
+        @if (descriptionInput.invalid && (descriptionInput.dirty || descriptionInput.touched)) {
+                <div class="alert">
+                @if (descriptionInput.hasError('required')) {
+                    <div >
+                    <p class="text-danger">Description is required.</p>
+                    </div>
+                }
+                </div>
+            }
+    </div>
+   
+    <div class="mb-4">
+    <label for="classGId" class="block text-sm font-bold mb-2">Class</label>
+    <input type="text" id="classGId" name="classGId" ngModel required class="form-control" #classGIdInput="ngModel" [(ngModel)]="addFileModel.classGId">
+    @if (classGIdInput.invalid && (classGIdInput.dirty || classGIdInput.touched)) {
+            <div class="alert">
+              @if (classGIdInput.hasError('required')) {
+                <div >
+                  <p class="text-danger">Class is required.</p>
+                </div>
+              }
+            </div>
+          }
+    </div>
+
+    <div class="mb-4">
+    <label for="subjectId" class="block text-sm font-bold mb-2">Subject</label>
+    <input type="text" id="subjectId" name="subjectId" ngModel required class="form-control" #subjectIdInput="ngModel" [(ngModel)]="addFileModel.subjectId">
+    @if (subjectIdInput.invalid && (subjectIdInput.dirty || subjectIdInput.touched)) {
+            <div class="alert">
+              @if (subjectIdInput.hasError('required')) {
+                <div >
+                  <p class="text-danger">Subject is required.</p>
+                </div>
+              }
+            </div>
+          }
+    </div>
+    <div class="mb-4">
+    <label for="isAvailable" class="block text-sm font-bold mb-2">Is Available</label>
+    <input type="checkbox" id="isAvailable" name="isAvailable" ngModel class="form-checkbox mx-2" #isAvailableInput="ngModel" [(ngModel)]="addFileModel.isAvailable">
+    @if (isAvailableInput.invalid && (isAvailableInput.dirty || isAvailableInput.touched)) {
+            <div class="alert">
+              @if (isAvailableInput.hasError('required')) {
+                <div >
+                  <p class="text-danger">Availability is required.</p>
+                </div>
+              }
+            </div>
+          }
+    </div>
+    <div class="mb-4">
+        <label for="file">Upload File:</label>
+        <input id="file" type="file" (change)="onFileSelected($event, 'File')" />
+        @if (!file) {
+          <div class="alert alert-warning">
+            <p class="text-danger">Please select a file to upload.</p>
+          </div>
+        }
+      </div>
+    <button type="submit" class="btn btn-primary mb-5">Add Lesson File<i class="fa fa-file mx-lg-2" aria-hidden="true"></i></button>
+</form>
+ <div >
+    @if(fileResponseMessage) {
+      <p>{{ fileResponseMessage }}</p>
+    }
+  </div>
+</div>
+    </div> Video
+</section>

@@ -1,0 +1,96 @@
+<div class="flex justify-between items-center mb-4 gap-3 mt-2">
+
+
+@if(isGeneralMessageVisible && !isStudentMessageVisible) {
+  <button mat-fab extended class="btn btn-outline-success  mx-2" (click)="openGeneralMessagemodal()" type="button">GeneralMessage</button>
+  <button mat-fab extended class="btn btn-outline-danger position-relative mx-2" (click)="openStudentMessageModal()" type="button">StudentMessage<i class="far fa-envelope-open"></i>  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+    {{count}}
+    <span class="visually-hidden">unread messages</span>
+  </span></button>
+}
+@else if(!isGeneralMessageVisible && isStudentMessageVisible) {
+  <button mat-fab extended class="btn btn-outline-danger mx-2" (click)="openGeneralMessagemodal()" type="button">GeneralMessage</button>
+  <button mat-fab extended class="btn btn-outline-success position-relative mx-2" (click)="openStudentMessageModal()" type="button">StudentMessage<i class="far fa-envelope-open"></i>  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{count}}
+    <span class="visually-hidden">unread messages</span>
+  </span></button>
+}
+</div>
+
+<section class="p-5 m-5 shadow-lg rounded-3 st-modal" [ngClass]="{'d-block':isStudentMessageVisible,'d-none': !isStudentMessageVisible}"  >
+
+<div class="row">
+    <div class="col-4  border-end ">
+      <p class="text-decoration-underline "><span class="text-info">{{student.fName}}</span> Messages</p>
+        @if(messages){
+    @for(msg of messages;track msg){
+@if(msg.isRead==false){
+        <a type="button" (click)="loadMessageById(msg.id)"><p style="color: brown;font-size: xx-small;">From:{{msg.addedBy}}/{{msg.name}}</p></a>
+}
+@else{<a type="button" (click)="loadMessageById(msg.id);"><div style="font-size: xx-small;" class="border-bottom"><b>From:</b>{{msg.addedBy}}<b>Title:</b>{{msg.name}}<b>Time:</b>{{msg.addedTime | date:'short'}}</div></a>}
+   } }
+    </div>
+<div class="col-8">
+<div class="">
+   
+        
+
+      
+@if(message){
+    
+        <h3>{{message.name}}</h3>
+        <p>{{message.addedBy}}</p>
+
+   <label for="content">Message Content</label>
+   <textarea class="form-control w-100" name="content" id="" style="height: 500px;" required>{{message.content}}</textarea>
+}
+   </div>
+
+   
+</div>
+
+</div>
+</section>
+
+ <section class="p-5 m-5 shadow-lg rounded-3 st-modal" [ngClass]="{'d-block':isGeneralMessageVisible,'d-none': !isGeneralMessageVisible}"  >
+<div class="row">
+    <div class="col-4  border-end ">
+      <p class="text-decoration-underline"><span class="text-info">{{classData.className}}</span> Messages</p>
+        @if(messages){
+    @for(cmsg of classmessages;track cmsg){
+
+        <a type="button" (click)="loadClassMessageById(cmsg.id)">
+          <div style="font-size: xx-small;" class="border-bottom">
+          <p>* From:{{cmsg.addedBy}}/Title:
+          {{cmsg.name}}/Time:
+          {{cmsg.addedTime | date:'short'}}</p></div></a>
+
+   } }
+    </div>
+<div class="col-8">
+<div class="">
+   
+        
+
+      
+@if(classMessage){
+    
+        <p>{{classMessage.name}}</p>
+        <p>{{classMessage.addedBy}}</p>
+
+   <label for="content">Message Content</label>
+   <textarea class="form-control w-100" name="content" id="" style="height: 500px;" required>{{classMessage.content}}</textarea>
+}
+   </div>
+
+   
+</div>
+
+</div>
+</section> 
+ 
+
+  
+    
+  
+  

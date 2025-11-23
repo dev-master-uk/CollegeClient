@@ -1,0 +1,35 @@
+
+<section class="carsour" id="home" style="background-image: url('{{branchModel.mainPhoto}}'); ">
+  <div class="span3 wow rollIn form">
+    <h2>{{branchModel.name}}</h2>
+    <div class="fimg">
+      <img [src]="branchModel.logoPhoto" />
+    </div>
+  </div>
+</section>
+<section class="protofilio" id="protofilio">
+  <h2>Protofilio</h2>
+
+
+  <div class="d-flex flex-wrap justify-content-center">
+    @for (item of model; track item.id) {
+
+
+    <div>
+
+      <h5>{{item.name}}</h5>
+
+      <div class="card">
+        <img [src]="item.path" alt="">
+        <textarea readonly>{{item.description}}</textarea>
+
+        <div>
+          <a class="btn btn-outline-primary mx-2 mt-2" href="">see more</a>
+        </div>
+      </div>
+
+    </div>
+    }
+
+  </div>
+</section>

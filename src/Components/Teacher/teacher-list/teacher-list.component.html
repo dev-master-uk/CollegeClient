@@ -1,0 +1,51 @@
+<mat-form-field floatLable="auto" appearance="outline">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+<mat-table [dataSource]="alldata" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+      The actual rendered columns are set as a property on the row definition" -->
+  <!-- Position Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> name. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef> email </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="jopDescription">
+    <mat-header-cell *matHeaderCellDef> jopDescription </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.jopDescription}} </mat-cell>
+  </ng-container>
+  <!-- Weight Column -->
+  <ng-container matColumnDef="departmentName">
+    <mat-header-cell *matHeaderCellDef> departmentName </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.departmentName}} </mat-cell>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="imgPath">
+    <mat-header-cell *matHeaderCellDef> iMGPath </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <img class="rounded-circle" [src]="element.imgPath" width="100" /> </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Action">
+    <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <a mat-raised-button color="primary" href="comst/{{element.userId}}">Comp</a>
+      <a mat-raised-button color="primary" href="teacherinfo/{{element.id}}">Info</a>
+    </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedAllColumn"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedAllColumn;"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButton class="bg-primary"></mat-paginator>

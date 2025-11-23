@@ -1,0 +1,29 @@
+<section>
+    <h6>Add General Message</h6>
+      <button class="btn btn-white-outline" (click)="toggleClassesVisibility()">
+        {{ classesvisible ? 'Hide Classes' : 'Choose receivers' }}
+    </button>
+    <section [ngClass]="{'d-none': !classesvisible, 'd-block': classesvisible}">
+    <div class="alert alert-success" role="alert">
+         <select class="form-control" name="classlist" [(ngModel)]="message.classIds"   multiple required>
+            <option *ngFor="let class of TeacherclassAndSSubjectList" [value]="class.classGId">{{ class.classGName }} - {{ class.subjectName }}</option>
+{{message.classIds}}
+        </select>
+    </div>
+</section>
+  
+    <div class="p-5 m-5 shadow-lg rounded-3">
+    <form (ngSubmit)="sendGeneralMessage()" #messageForm="ngForm">
+        <label for="name">Title</label>
+        <input class="form-control" type="text" name="name" [(ngModel)]="message.name" required/>
+        
+
+      
+
+        <label for="content">Message Content</label>
+   <textarea class="form-control w-100" name="content" id="" style="height: 500px;" [(ngModel)]="message.content" required></textarea>
+<div>
+        <button mat-raised-button color="primary" type="submit">Send Message</button></div>
+    </form></div>
+</section>
+

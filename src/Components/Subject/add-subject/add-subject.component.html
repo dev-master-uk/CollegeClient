@@ -1,0 +1,57 @@
+<section >
+    
+<div class="row justify-content-md-center">
+<div class="list-group col-7 bg-base-100 w-1/2 mx-5 my-5 flex flex-col p-6 rounded-lg shadow-lg px-5"  style="width: 50%;">
+    <button class="btn btn-info mb-1">Click Here To Add Subject</button>
+    @for(item of classGList; track item.id) {
+  
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 text-decoration-underline">{{ item.name }}</h5>
+      <!-- <small>3 days ago</small> -->
+    </div>
+     @for(sitem of item.subjects; track sitem.id) {
+      <li class="list-group-item"><p class="mb-1 ">{{ sitem.name }}</p></li>
+    }
+    <!-- <small class="text-right">Donec id elit non mi porta.</small> -->
+  }
+</div>
+</div>
+<div class="row justify-content-md-center">
+<div class="col-7 bg-base-100 w-1/2 mx-5 mt-5 flex flex-col p-6 rounded-lg shadow-lg"  style="width: 50%;">
+  <h2 class="text-2xl font-bold mb-4 text-center">Add Subject</h2>
+  <form  [formGroup]="addSubjectModel" (ngSubmit)="onSubmit()" class="mx-5">
+    <div class="mb-4">
+    <label for="name" class="block text-sm font-bold mb-2">Name</label>
+    <input type="text" id="name" formControlName="name" required class="form-control">
+    </div>
+
+    <div class="mb-4">
+    <label for="department" class="block text-sm font-bold mb-2">Department</label>
+    <select id="department" formControlName="departmentName" required class="form-control">
+        @for(item of departmentList; track item.id) {
+        <option [value]="item.name">{{ item.name }}</option>
+        }
+    </select>
+    </div>
+
+    <div  class="mb-4">
+    <label for="classGIds" class="block text-sm font-bold mb-2">Class</label>
+    <select multiple id="classGIds" formControlName="classGIds" required class="form-control">
+        @for(classG of classGList; track classG.id) {
+        <option [value]="classG.id">{{ classG.name }}</option>
+
+    }
+
+    </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mb-5">Add Subject<i class="fa fa-book-open m-2" aria-hidden="true"></i></button>
+</form>
+<div >
+    @if(responseMessage) {
+    <p class="text-danger">{{ responseMessage }}</p>
+    }
+</div>
+</div>
+    </div>
+</section>

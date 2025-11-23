@@ -1,0 +1,95 @@
+<div class="px-5">
+  <section class="container mx-5">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> UserId </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="addedBy">
+        <th mat-header-cell *matHeaderCellDef> AddedBy </th>
+        <td mat-cell *matCellDef="let element"> {{element.addedBy}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="branchId">
+        <th mat-header-cell *matHeaderCellDef> Branch Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.branchName}} </td>
+      </ng-container>
+
+
+
+
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <a mat-raised-button color="primary" href="classglist/{{element.id}}">kkkkkkk</a>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButton class="bg-danger"></mat-paginator>
+
+    <!--<div *ngFor="let item of appoint">
+      {{item.id}}
+    </div>-->
+    <!--@for(item of appoint;track item.id){
+    <li>{{item.price}}</li>
+    }-->
+    <button class="btn btn-primary" (click)="openAddmodal()" type="button">Add Level</button>
+
+  </section>
+
+
+  <section class="add-level-modal" [ngClass]="{'d-block':isAddLevelModalVisible,'d-none': !isAddLevelModalVisible}">
+    <div class="card">
+      <button type="button" class="btn btn-light" style="position:fixed;top:10px;right:10px" (click)="closeAddmodal()">X</button>
+      <form [formGroup]="addModel" (ngSubmit)="addLevel()">
+
+        <div>
+          <label for="name">Name:</label>
+          <input id="name" formControlName="name" type="text" required />
+        </div>
+        <div>
+          <label for="branchId">Branch Id:</label>
+          <input id="branchId" formControlName="branchId" type="text" required readonly />
+        </div>
+
+
+
+        <div>
+          <label for="addedBy">Added By:</label>
+          <input id="addedBy" formControlName="addedBy" type="text" required readonly />
+        </div>
+
+
+
+        <button type="submit" [disabled]="!addModel.valid">
+          Submit
+        </button>
+      </form>
+      @if(responseMessage){
+      <div>
+        <p>{{ responseMessage }}</p>
+      </div>}
+    </div>
+  </section>
+</div>

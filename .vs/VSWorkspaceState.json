@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.angular\\cache",
+    "\\.angular\\cache\\18.2.11",
+    "\\.angular\\cache\\18.2.11\\CollegeClient",
+    "\\.angular\\cache\\18.2.11\\CollegeClient\\vite",
+    "\\.angular\\cache\\18.2.11\\CollegeClient\\vite\\deps",
+    "\\src",
+    "\\src\\app",
+    "\\src\\Components\\Branch\\list-branch",
+    "\\src\\Components\\Test\\test",
+    "\\src\\Pipes"
+  ],
+  "SelectedNode": "\\src\\app\\app.config.ts",
+  "PreviewInSolutionExplorer": false
+}

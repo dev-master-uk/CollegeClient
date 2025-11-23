@@ -1,0 +1,49 @@
+<div class="organization-upload">
+  <h2>Upload Branch Image Details</h2>
+  <form [formGroup]="addModel" (ngSubmit)="onSubmit()">
+    <!-- Organization Fields -->
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" type="text" required />
+    </div>
+    <div>
+      <label for="description">description:</label>
+      <textarea class="form-control" id="description" formControlName="description" type="text" required></textarea>
+    </div>
+    <div>
+      <label for="type">type:</label>
+      
+      <select id="type" formControlName="type" class="form-select" required>
+        <option selected></option>
+        @for(item of getTypeModel;track item.id){
+        <option [value]="item.name">{{item.name}}</option>
+        }
+      </select>
+    </div>
+    <div>
+      <label for="branchId">branchId:</label>
+      <input id="branchId" formControlName="branchId" type="text" required />
+    </div>
+    <div>
+      <label for="addedBy">addedBy:</label>
+      <input id="addedBy" formControlName="addedBy" type="text" required />
+    </div>
+   
+
+    <!-- File Uploads -->
+
+    <div>
+      <label for="img">Logo:</label>
+      <input id="img" type="file" (change)="onFileSelect($event, 'Img')" />
+    </div>
+
+    <button type="submit" [disabled]="!addModel.valid ||  !img">
+      Submit
+    </button>
+  </form>
+  <div *ngIf="responseMessage">
+    <p>{{ responseMessage }}</p>
+  </div>
+</div>
+
+

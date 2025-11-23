@@ -1,0 +1,156 @@
+<section class="container">
+  <section class="mt-5">
+    <div class="d-flex justify-content-between">
+      <div>
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+      </div>
+      <div>
+        <h3><u>List Of Students</u></h3>
+      </div>
+      <div>
+        <button class="btn btn-primary" (click)="openUnCompletedStudents()">Un Completed <span class="badge bg-danger">{{UnCompletedCount}}</span></button>
+      </div>
+    </div>
+
+    <table mat-table [dataSource]="alldata" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef> UserId </th>
+        <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="addedBy">
+        <th mat-header-cell *matHeaderCellDef> AddedBy </th>
+        <td mat-cell *matCellDef="let element"> {{element.addedBy}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="birthDate">
+        <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+        <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+      </ng-container>
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> E.Mail </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <a mat-raised-button color="primary" href="comst/{{element.userId}}">Comp</a>
+          <a mat-raised-button color="primary" href="stinfo/{{element.id}}">Info</a>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedAllColumn"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedAllColumn;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButton class="bg-primary"></mat-paginator>
+
+
+    <!--<div *ngFor="let item of appoint">
+      {{item.id}}
+    </div>-->
+    <!--@for(item of appoint;track item.id){
+    <li>{{item.price}}</li>
+    }-->
+  </section>
+
+  <section class="add-level-modal mt-5" [ngClass]="{'d-block':isUnCompletedModalVisible,'d-none': !isUnCompletedModalVisible}">
+    <div class="d-flex justify-content-between">
+      <div>
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+      </div>
+      <div>
+        <h3>Un Completed Forms</h3>
+      </div>
+      <div>
+        <button type="button" class="btn btn-danger" (click)="closeUnCompletedStudents()">X</button>
+      </div>
+
+
+    </div>
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef> UserId </th>
+        <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="addedBy">
+        <th mat-header-cell *matHeaderCellDef> AddedBy </th>
+        <td mat-cell *matCellDef="let element"> {{element.addedBy}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="birthDate">
+        <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+        <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+      </ng-container>
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> E.Mail </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <a mat-raised-button color="primary" href="comst/{{element.userId}}">kkkkkkk</a>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButton class="bg-primary"></mat-paginator>
+
+    <!--<div *ngFor="let item of appoint">
+      {{item.id}}
+    </div>-->
+    <!--@for(item of appoint;track item.id){
+    <li>{{item.price}}</li>
+    }-->
+
+  </section>
+
+
+</section>
+
+
+

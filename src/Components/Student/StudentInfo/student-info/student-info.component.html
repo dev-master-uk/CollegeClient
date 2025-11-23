@@ -1,0 +1,263 @@
+<div class="m-5">
+ 
+  <section class="d-flex justify-content-between">
+    <div>
+      <!--student photo-->
+      @if(profileImg){
+      <div>
+        <img class="rounded" [src]="profileImg.path" alt="student photo" width="300" />
+      </div>}
+      @else{
+      <div>
+        <img class="rounded" src="https://localhost:7009/Resorces/StudentImg/defaultstudentt.png" alt="student photo" width="300" />
+      </div>
+      }
+
+
+
+
+      <!--cors-->
+      <!--cors-->
+
+
+      <section class="st-modal" [ngClass]="{'d-block':isphotoModalVisible,'d-none': !isphotoModalVisible}">
+        <p>photomodal</p>
+        <div class="d-flex justify-content-between flex-wrap">
+          @for(item of gallary; track item){
+          <button class="mb-4 btn btn-light" (click)="changeProfileImg(item.id)"><img [src]="item.path" width="200"/></button>}
+        </div>
+        <button type="button" class="closebutton btn btn-danger" (click)="closephotomodal()">X</button>
+        <a class="btn btn-primary" href="stImg/{{studentModel.id}}">Add photo</a>
+      </section>
+
+
+
+
+      <section class="st-modal" [ngClass]="{'d-block':isDocumentsModalVisible,'d-none': !isDocumentsModalVisible}">
+        <p>Documents</p>
+        <button type="button" class="closebutton btn btn-light" (click)="closeDocumentsmodal()">X</button>
+        <a class="btn btn-primary" href="/stdocu/{{studentModel.id}}">Add document</a>
+      </section>
+
+
+      <section class="st-modal" [ngClass]="{'d-block':isDiseasesModalVisible,'d-none': !isDiseasesModalVisible}">
+        <p>Diseases</p>
+        <button type="button" class="closebutton btn btn-danger" (click)="closeDiseasesmodal()">X</button>
+      </section>
+
+
+      <section class="st-modal" [ngClass]="{'d-block':isAttendanceModalVisible,'d-none': !isAttendanceModalVisible}">
+        <p>AttendanceModal</p>
+        <button type="button" class="closebutton btn btn-light" (click)="closeAttendancemodal()">X</button>
+      </section>
+
+<!-- 
+      <section class="st-modal" [ngClass]="{'d-block':isAddLevelModalVisible,'d-none': !isAddLevelModalVisible}">
+   (click)="openAddmodal()" type="button"
+    <button type="button" class="closebutton btn btn-light" (click)="closeAddmodal()">X</button>
+  </section>
+
+
+  <section class="st-modal" [ngClass]="{'d-block':isAddLevelModalVisible,'d-none': !isAddLevelModalVisible}">
+   (click)="openAddmodal()" type="button"
+    <button type="button" class="closebutton btn btn-light" (click)="closeAddmodal()">X</button>
+  </section>
+
+
+  <section class="st-modal" [ngClass]="{'d-block':isAddLevelModalVisible,'d-none': !isAddLevelModalVisible}">
+   (click)="openAddmodal()" type="button"
+    <button type="button" class="closebutton btn btn-light" (click)="closeAddmodal()">X</button>
+  </section> -->
+      <!--<div>
+    <img src="{{student.photo}}" alt="student photo" />
+  </div>-->
+      <!--mat edit button,,,(click)="openDialog()"-->
+      <div style="margin-top:40px;">
+       
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Name:</mat-label>
+          <input matInput readonly [value]="studentModel.fullName" />
+        </mat-form-field>
+        <!--<button mat-raised-button color="primary" class="m-2">Edit</button>-->
+      </div>
+    </div>
+
+    <div class="buttonGrid d-flex justify-content-center flex-wrap">
+      <div>
+        <button mat-fab extended style="width:150px;height:150px;" (click)="openphotomodal()" type="button">
+          <mat-icon>photo</mat-icon>
+         Photos
+        </button>
+      </div>
+
+      <div>
+        <button mat-fab extended style="width:150px;height:150px;" (click)="openDocumentsmodal()" type="button">
+          <mat-icon>folder_open</mat-icon>
+          Show Documents
+        </button>
+      </div>
+
+      <div>
+        <button mat-fab extended style="width:150px;height:150px;" (click)="openDiseasesmodal()" type="button">
+          <mat-icon>airline_seat_individual_suite</mat-icon>
+          Chronic Diseases
+        </button>
+      </div>
+
+      <div>
+        <button mat-fab extended style="width:150px;height:150px;" (click)="openAttendancemodal()" type="button">
+          <mat-icon>person_outline</mat-icon>
+          Attendance
+        </button>
+      </div>
+
+      <div>
+        <button mat-fab extended style="width:150px;height:150px;">
+          <mat-icon>sms</mat-icon>
+          Masseges
+        </button>
+      </div>
+
+      <div>
+        <button mat-fab extended style="width:150px;height:150px;">
+          <mat-icon>notes</mat-icon>
+          Reports
+        </button>
+      </div>
+
+    </div>
+  </section>
+  <!--mat divider-->
+  <mat-divider class="divider"></mat-divider>
+
+  <section>
+    <div>
+     
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>First Name</mat-label>
+          <input matInput readonly [value]="studentModel.fName"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Family Name</mat-label>
+          <input matInput readonly [value]="studentModel.lName"/>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>User Id</mat-label>
+          <input matInput readonly [value]="studentModel.userId"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Email</mat-label>
+          <input matInput readonly [value]="studentModel.email"/>
+        </mat-form-field>
+    
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Middle Name</mat-label>
+        <input matInput readonly [value]="studentModel.midName"/>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Phone</mat-label>
+        <input matInput readonly [value]="studentModel.phone"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Address</mat-label>
+        <input matInput readonly [value]="studentModel.address"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Birth Date</mat-label>
+        <input matInput readonly [value]="studentModel.birthDate"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Gender</mat-label>
+        <input matInput readonly [value]="studentModel.gender"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>First Guardian Name</mat-label>
+        <input matInput readonly [value]="studentModel.fGuardianName"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>First Guardian Phone</mat-label>
+        <input matInput readonly [value]="studentModel.fGuardianPhone"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>First Guardian Email</mat-label>
+        <input matInput readonly [value]="studentModel.fGuardianEmail"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>First Guardian Address</mat-label>
+        <input matInput readonly [value]="studentModel.fGuardianAddress"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>First Guardian Relation</mat-label>
+        <input matInput readonly [value]="studentModel.fGuardianRelation"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Second Guardian Name</mat-label>
+        <input matInput readonly [value]="studentModel.sGuardianName"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Second Guardian Phone</mat-label>
+        <input matInput readonly [value]="studentModel.sGuardianPhone"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Second Guardian Email</mat-label>
+        <input matInput readonly [value]="studentModel.sGuardianEmail"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Second Guardian Address</mat-label>
+        <input matInput readonly [value]="studentModel.sGuardianAddress"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Second Guardian Relation</mat-label>
+        <input matInput readonly [value]="studentModel.sGuardianRelation"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Branch</mat-label>
+        <input matInput readonly [value]="studentModel.bid"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Blood Group</mat-label>
+        <input matInput readonly [value]="studentModel.bloodGroup"/>
+      </mat-form-field>
+
+
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Added By</mat-label>
+        <input matInput readonly [value]="studentModel.addedBy"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Branch Id</mat-label>
+        <input matInput readonly [value]="studentModel.addedTime"/>
+      </mat-form-field>
+
+
+    </div>
+
+  </section>
+
+</div>
+

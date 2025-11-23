@@ -1,0 +1,121 @@
+
+
+<section class="vh-100" style="background-color: #eee;">
+  <div *ngIf="res == 0">
+    <h1 class="alert-danger"> hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</h1>
+  </div>
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                <form #form="ngForm" (ngSubmit)="oNregister()" class="mx-1 mx-md-4">
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button class="btn btn-primary" type="submit">Register</button>
+                  </div> <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="registermodel.username" />
+                      <label class="form-label" for="username">User Name</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="firstName" name="firstName" class="form-control" [(ngModel)]="registermodel.firstName" />
+                      <label class="form-label" for="firstName">firstName</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="registermodel.lastName" />
+                      <label class="form-label" for="lastName">lastName</label>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="userType" name="userType" class="form-control" [(ngModel)]="registermodel.userType" />
+                      <label class="form-label" for="userType">userType</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="email" id="email" name="email" class="form-control" [(ngModel)]="registermodel.email" />
+                      <label class="form-label" for="email">Your Email</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="pass" name="pass" class="form-control" [(ngModel)]="registermodel.password" />
+                      <label class="form-label" for="pass">Password</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <select type="text" id="branchId" name="branchId" class="form-control" [(ngModel)]="registermodel.branchId">
+                        <option selected>Choose</option>
+                        @for(item of branchesModel;track item){
+
+                        <option [value]="item.id">{{item.name}}</option>
+                        }
+                      </select>
+
+                      <label class="form-label" for="roles">Branch Id</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <select multiple type="text" id="roles" name="roles" class="form-control" [(ngModel)]="registermodel.roles">
+                        <option value="Manager">Manager</option>
+                        <option value="Firstuser">Firstuser</option>
+                        <option value="Reader">Reader</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="Student">Student</option>
+                        <option value="Parent">Parent</option>
+                        <option value="Admin">Admin</option>
+                      </select>
+
+                      <label class="form-label" for="roles">Roles</label>
+                    </div>
+                  </div>
+
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button class="btn btn-primary" type="submit">Register</button>
+                  </div>
+
+                </form>
+{{kkkk}}
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                     class="img-fluid" alt="Sample image">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+

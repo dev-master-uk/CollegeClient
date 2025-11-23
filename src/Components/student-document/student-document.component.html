@@ -1,0 +1,74 @@
+<section>
+  <section class="container mt-3 d-flex justify-content-between">
+    @for(item of documentview;track item.id){
+    <div class="card" style="width:300px">
+      <iframe class="card-img-top" [src]="item.path | safeUrl" loading="lazy" allowfullscreen style=" display: inline-block; object-fit: cover; width: 100%; height: 70%;"></iframe>
+      <div class="card-body">
+        <h4 class="card-title">{{item.name}}</h4>
+        <p class="card-text">Description:{{item.description}}</p>
+        <a [href]="item.path" class="btn btn-primary">See file</a>
+      </div>
+    </div>
+    }
+  </section>
+  <button type="button" class="btn btn-light mx-5 mt-3" (click)="openDocumentsmodal()">+ Add new document </button>
+
+  <section class="st-modal" [ngClass]="{'d-block':isDocumentModalVisible,'d-none': !isDocumentModalVisible}">
+    <button type="button" class="closebutton btn btn-light" (click)="closeDocumentsmodal()">X</button>
+    <div class="studentDocument-upload">
+      <h2>Upload Student Document</h2>
+      <form [formGroup]="addModel" (ngSubmit)="onSubmit()">
+        <!-- Organization Fields -->
+
+        <div>
+          <label for="description">description:</label>
+          <input id="description" formControlName="description" type="text" required />
+        </div>
+
+        <div>
+          <label for="documentIdTypeId">Document Type:</label>
+          <select id="documentIdTypeId" class="form-control" formControlName="documentIdTypeId" type="text" require>
+            <option selected>choose your type</option>
+            @for(item of types;track item.id){
+            <option [value]="item.id">{{item.name}}</option>
+            }
+          </select>
+        </div>
+
+        <div>
+          <label for="studentId">studentId:</label>
+          <input id="studentId" formControlName="studentId" type="text" required />
+        </div>  <div>
+          <label for="name">Name:</label>
+          <input id="name" formControlName="name" type="text" required />
+        </div>
+        <div>
+          <label for="addedBy">addedBy:</label>
+          <input id="addedBy" formControlName="addedBy" type="text" required />
+        </div>
+        <div>
+          <label for="bId">bId :</label>
+          <input id="bId" formControlName="bId" type="text" required />
+        </div>
+
+        <!-- File Uploads -->
+
+
+
+
+        <div>
+          <label for="dFile">Uploud File</label>
+          <input id="dFile" type="file" (change)="onFileSelect($event, 'DFile')" />
+        </div>
+
+        <button type="submit" [disabled]="!addModel.valid || !dFile">
+          Submit
+        </button>
+      </form>
+      @if(responseMessage){
+      <div>
+        <p>{{ responseMessage }}</p>
+      </div>}
+    </div>
+  </section>
+</section>

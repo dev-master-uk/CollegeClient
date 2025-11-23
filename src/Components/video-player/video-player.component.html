@@ -1,0 +1,8 @@
+    <!-- child videoplayerHTML -->
+    <video width="750" controls [controlsList]="'nodownload'" [autoplay]="true" class="rounded">
+  <source [src]="videoIdFromVideoLessons()?.videoPath" [id]="videoIdFromVideoLessons()?.id" [autofocus]="true" type="video/mp4">
+
+  Your browser does not support HTML video.
+</video>
+{{videoIdFromVideoLessons()?.description}}
+<p>{{videoIdFromVideoLessons()?.title}}</p>

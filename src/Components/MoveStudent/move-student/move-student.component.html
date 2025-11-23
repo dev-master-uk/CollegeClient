@@ -1,0 +1,90 @@
+<!--<section class="d-flex justify-content-between">
+  <section>-->
+<!--select tag desplaying getLevels and binding getLevels.id-->
+<!--<mat-form-field appearance="fill" class="form-field">
+  <mat-label>Level:</mat-label>
+  <mat-select formControlName="levelModel.id">
+    <mat-option *ngFor="let item of levelModel" [value]="item.id">{{item.name}}</mat-option>
+  </mat-select>
+  </mat-form-field>-->
+<!--select tag desplaying getLevels and binding getLevels.id-->
+
+<select class="form-select" (change)="getClasses()" [(ngModel)]="clId">
+  @for(item of levelModel;track item){
+  <option [value]="item.id">{{item.name}}</option>}
+
+</select>
+
+<!--<select class="form-select">
+  <option value="mk">mk</option>
+</select>-->
+<!---->
+@if(getSClasses){<select class="form-select" (change)="getStudentToMoveM()" [(ngModel)]="getRequest.classId">
+  @for(item of getSClasses;track item){
+  <option [value]="item.id">{{item.name}}</option>
+  }
+</select>}
+
+
+
+<select class="form-select" (change)="getStudentToMoveM()" [(ngModel)]="getRequest.yearId">
+  @for(item of years;track item){
+  <option [value]="item.id">{{item.periodYear}}</option>}
+
+</select>
+
+
+<mat-table [dataSource]="alldata" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+  The actual rendered columns are set as a property on the row definition" -->
+  <!-- Position Column -->
+  <ng-container matColumnDef="fullName">
+    <mat-header-cell *matHeaderCellDef> name. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.fullName}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="address">
+    <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="birthDate">
+    <mat-header-cell *matHeaderCellDef> D of B </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.birthDate}} </mat-cell>
+  </ng-container>
+  <!-- Weight Column -->
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="imgPath">
+    <mat-header-cell *matHeaderCellDef> iMGPath </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <img class="rounded-circle" [src]="element.imgPath" width="100" /> </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Action">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                    [checked]="allselection.hasValue() && isAllSelected()"
+                    [indeterminate]="allselection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? allselection.toggle(row) : null"
+                    [checked]="allselection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+
+
+
+  <mat-header-row *matHeaderRowDef="displayedAllColumn"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedAllColumn;"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButton class="bg-primary"></mat-paginator>
+

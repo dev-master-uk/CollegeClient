@@ -1,0 +1,49 @@
+<div class="container shadow-lg align-content-center">
+<div><h2>Teacher Dashboard</h2></div>
+
+
+  <div class="pb-3">
+    <img [src]="teacherbyuserModel.imgPath" alt="Profile Image" class="profile-image rounded-2" width="150"/>
+  </div>
+  
+  <!-- Display teacher information -->
+  <div class="teacher-details">
+    <mat-form-field appearance="fill" class="form-field ">
+      <mat-label>Name</mat-label>
+      <input matInput readonly [value]="teacherbyuserModel.title + '. ' + teacherbyuserModel.name"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Job Description</mat-label>
+      <input matInput readonly [value]="teacherbyuserModel.jopDescription"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email Address</mat-label>
+      <input matInput readonly [value]="teacherbyuserModel.email"/>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [routerLink]="['/addgmessage', teacherbyuserModel.id]" type="button" class="mt-2">Add General Message</button>
+<!-- <section class="row">
+ Display list of classGroup names 
+<div class="col-6 class-group-list">
+  <h6>Classes</h6>
+  
+  <ul>
+    <li *ngFor="let classGroup of teacherModel.classNames">{{ classGroup.name }}
+      </li>
+      
+  </ul>
+</div>
+
+<div class="col-6 class-group-list">
+  <h6>Subjects</h6>
+   
+  <ul>
+    <li *ngFor="let subjectGroup of teacherModel.subjectNames">{{ subjectGroup.name }}</li>
+
+
+  </ul>
+</div>
+</section> -->
+</div>
+</div>

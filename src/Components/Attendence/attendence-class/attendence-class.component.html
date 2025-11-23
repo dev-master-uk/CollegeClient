@@ -1,0 +1,69 @@
+<select class="form-select" (change)="getClasses()" [(ngModel)]="clId">
+  @for(item of levelModel;track item){
+  <option [value]="item.id">{{item.name}}</option>}
+
+</select>
+@if(getSClasses){<select class="form-select" (change)="getStudent()" [(ngModel)]="getRequest.classId">
+  @for(item of getSClasses;track item){
+  <option [value]="item.id">{{item.name}}</option>
+  }
+</select>}
+
+<select class="form-select" (change)="getStudent()" [(ngModel)]="getRequest.yearId">
+
+  @for(item of years;track item){
+  <option [value]="item.id">{{item.periodYear}}</option>}
+
+</select>
+
+  : string,
+  : string,
+  : string,
+<mat-table [dataSource]="alldata" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+  The actual rendered columns are set as a property on the row definition" -->
+  <!-- Position Column -->
+  <ng-container matColumnDef="studentName">
+    <mat-header-cell *matHeaderCellDef> name. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.studentName}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="studentddress">
+    <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.studentddress}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="studentdateofbirth">
+    <mat-header-cell *matHeaderCellDef> D of B </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.studentdateofbirth}} </mat-cell>
+  </ng-container>
+  <!-- Weight Column -->
+  <!-- Symbol Column -->
+
+
+
+  <ng-container matColumnDef="Action">
+    <mat-header-cell *matHeaderCellDef>
+      Present
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <input type="checkbox"
+             [value]="element.id"
+             [(ngModel)]="selectedStudents[element.id]"
+             (change)="onCheckboxChange(element.id)" />
+    </mat-cell>
+  </ng-container>
+
+
+
+
+  <mat-header-row *matHeaderRowDef="displayedAllColumn"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedAllColumn;"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButton class="bg-primary"></mat-paginator>
+<button (click)="submitSelectedStudents()">Submit Selected Students</button>
+<!--{{studentId}}-->
+

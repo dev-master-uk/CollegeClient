@@ -1,0 +1,199 @@
+<!--<ngx-spinner>
+  <p>louding...........</p>
+</ngx-spinner>-->
+
+<section class="container mt-5">
+  <!--<label for="level">Choose the Level</label>
+  <select id="level" class="form-control" (change)="getClassesByLevelforSelect()" [(ngModel)]="levelId">
+    @for(item of levelList;track item.id){
+    <option [value]="item.id">{{item.name}}</option>
+    }
+  </select>-->
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Choose the Level</mat-label>
+    <mat-select (selectionChange)="getClassesByLevelforSelect()" [(ngModel)]="levelId">
+      @for(item of levelList;track item.id){
+      <mat-option [value]="item.id">{{item.name}}</mat-option>
+      }
+
+    </mat-select>
+  </mat-form-field>
+  @if(levelList){
+  <section>
+    <div class="d-flex justify-content-between">
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>First Name</mat-label>
+        <input matInput [value]="getall.fName" disabled />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Family Name</mat-label>
+        <input matInput [value]="getall.lName" disabled />
+      </mat-form-field>
+
+    </div>
+    <div class="d-flex justify-content-between">
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>User Id</mat-label>
+        <input matInput [value]="getall.userId" disabled />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput [value]="getall.email" />
+      </mat-form-field>
+    </div>
+  </section>
+  <h5>Complete Form For :<span style="color:blue">{{getall.fName}}</span></h5>
+  <form [formGroup]="studentForm">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Middle Name</mat-label>
+      <input matInput formControlName="midName" />
+    </mat-form-field>
+
+
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>year</mat-label>
+      <input matInput formControlName="yearId" />
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Birth Date</mat-label>
+      <input matInput formControlName="birthDate" [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>First Guardian Name</mat-label>
+      <input matInput formControlName="fGuardianName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>First Guardian Phone</mat-label>
+      <input matInput formControlName="fGuardianPhone" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>First Guardian Email</mat-label>
+      <input matInput formControlName="fGuardianEmail" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>First Guardian Address</mat-label>
+      <input matInput formControlName="fGuardianAddress" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>First Guardian Relation</mat-label>
+      <input matInput formControlName="fGuardianRelation" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Second Guardian Name</mat-label>
+      <input matInput formControlName="sGuardianName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Second Guardian Phone</mat-label>
+      <input matInput formControlName="sGuardianPhone" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Second Guardian Email</mat-label>
+      <input matInput formControlName="sGuardianEmail" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Second Guardian Address</mat-label>
+      <input matInput formControlName="sGuardianAddress" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Second Guardian Relation</mat-label>
+      <input matInput formControlName="sGuardianRelation" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Medical Report</mat-label>
+      <input matInput formControlName="medicalReport" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Blood Group</mat-label>
+      <mat-select formControlName="bloodGroup">
+        <mat-option value="A+">A+</mat-option>
+        <mat-option value="A-">A-</mat-option>
+        <mat-option value="B+">B+</mat-option>
+        <mat-option value="B-">B-</mat-option>
+        <mat-option value="AB+">AB+</mat-option>
+        <mat-option value="AB-">AB-</mat-option>
+        <mat-option value="O+">O+</mat-option>
+        <mat-option value="O-">O-</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Class</mat-label>
+      <mat-select formControlName="classIds" multiple>
+        @for(item of classList;track item.id){
+        <mat-option [value]="item.id">{{item.name}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>ChronicDisease</mat-label>
+      <mat-select formControlName="chronicDiseaseIds" multiple>
+        @for(item of chronicDiseaseList;track item.id){
+        <mat-option [value]="item.id">{{item.name}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Added By</mat-label>
+      <input matInput formControlName="addedBy" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Branch Id</mat-label>
+      <input matInput formControlName="bid" />
+    </mat-form-field>
+    <!-- Add other fields here -->
+
+    <button mat-raised-button color="primary" type="button" (click)="updateStudent(getall.id)">Update</button>
+  </form>
+
+  }
+  @if(responseMessage){
+  <div>
+    <p>{{ responseMessage }}</p>
+  </div>
+  }
+
+</section>
+
+

@@ -1,0 +1,109 @@
+<div class="organization-upload">
+  <h2>Update Organization Details</h2>
+  <form [formGroup]="organizationForm" (ngSubmit)="onSubmit()">
+     Organization Fields 
+
+    <div>
+      <label for="id">Id:</label>
+      <input id="id" formControlName="id" [value]="getbyIdM.id" type="text" required />
+    </div>
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" [value]="getbyIdM.name" type="text" required />
+    </div>
+    <div>
+      <label for="address">Address:</label>
+      <input id="address" formControlName="address" [value]="getbyIdM.address" type="text" required />
+    </div>
+    <div>
+      <label for="infoEmail">Email:</label>
+      <input id="infoEmail" formControlName="infoEmail" [value]="getbyIdM.infoEmail" type="email" required />
+    </div>
+    <div>
+      <label for="phone">Phone:</label>
+      <input id="phone" formControlName="phone" [value]="getbyIdM.phone" type="text" required />
+    </div>
+    <div>
+      <label for="website">Website:</label>
+      <input id="website" formControlName="website" [value]="getbyIdM.website" type="text" required />
+    </div>
+    <div>
+      <label for="updatedBy">Added By:</label>
+      <input id="updatedBy" formControlName="updatedBy" [value]="getbyIdM.updatedBy" type="text" required />
+    </div>
+
+     File Uploads 
+    <div>
+      <label for="mPhoto">Main Photo:</label>
+      <input id="mPhoto" type="file" (change)="onFileSelect($event, 'MPhoto')" />
+    </div>
+    <div>
+      <label for="logo">Logo:</label>
+      <input id="logo" type="file" (change)="onFileSelect($event, 'Logo')" />
+    </div>
+
+    <button type="submit" [disabled]="!organizationForm.valid || !mPhoto || !logo">
+      Submit
+    </button>
+  </form>
+  <div *ngIf="responseMessage">
+    <p>{{ responseMessage }}</p>
+  </div>
+</div>
+//////////
+<!--<div class="organization-upload">
+  <h2>Update Organization Details</h2>
+  <form [formGroup]="organizationForm" (ngSubmit)="onSubmit()">-->
+    <!-- Organization Fields -->
+
+    <!--<div>
+      <label for="id">Id:</label>
+      <input id="id" formControlName="id"  type="text" required />
+    </div>
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name"  type="text" required />
+    </div>
+    <div>
+      <label for="address">Address:</label>
+      <input id="address" formControlName="address"  type="text" required />
+    </div>
+    <div>
+      <label for="infoEmail">Email:</label>
+      <input id="infoEmail" formControlName="infoEmail"  type="email" required />
+    </div>
+    <div>
+      <label for="phone">Phone:</label>
+      <input id="phone" formControlName="phone"  type="text" required />
+    </div>
+    <div>
+      <label for="website">Website:</label>
+      <input id="website" formControlName="website"  type="text" required />
+    </div>
+    <div>
+      <label for="updatedBy">Added By:</label>
+      <input id="updatedBy" formControlName="updatedBy"  type="text" required />
+    </div>-->
+
+    <!-- File Uploads -->
+    <!--<div>
+      <label for="mPhoto">Main Photo:</label>
+      <input id="mPhoto" type="file" (change)="onFileSelect($event, 'MPhoto')" />
+    </div>
+    <div>
+      <label for="logo">Logo:</label>
+      <input id="logo" type="file" (change)="onFileSelect($event, 'Logo')" />
+    </div>
+
+    <button type="submit" [disabled]="!organizationForm.valid || !mPhoto || !logo">
+      Submit
+    </button>
+  </form>
+  <div *ngIf="responseMessage">
+    <p>{{ responseMessage }}</p>
+  </div>
+</div>-->
+
+
+
+

@@ -1,0 +1,99 @@
+<div class="organization-upload">
+  <h2>Upload Branch Image Details</h2>
+  <form [formGroup]="addModel" (ngSubmit)="onSubmit()">
+    <!-- Organization Fields -->
+    <div>
+      <label for="title">Title:</label>
+
+      <select id="title" formControlName="title" class="form-select" required>
+        <option selected>choose your title</option>
+
+        <option value="Mr">Mr</option>
+        <option value="Mrs">Mrs</option>
+
+
+      </select>
+      <!--  -->
+     
+  
+    </div>
+
+    <div>
+      <label for="userName">userName:</label>
+      <input id="userName" formControlName="userName" type="text" required />
+    </div>
+
+    <div>
+      <label for="firstName">firstName:</label>
+      <input id="firstName" formControlName="firstName" type="text" required />
+    </div>
+
+    <div>
+      <label for="lastName">lastName:</label>
+      <input id="lastName" formControlName="lastName" type="text" required />
+    </div>
+
+    <div>
+      <label for="password">password:</label>
+      <input class="form-control" id="password" formControlName="password" type="password" required />
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="text" required />
+    </div>
+    <div>
+      <label for="jopDescription">JopDescription:</label>
+      <input class="form-control" id="jopDescription" formControlName="jopDescription" type="text" required />
+    </div>
+    <div>
+      <label for="userType">userType:</label>
+      <input class="form-control" id="userType" formControlName="userType" type="text" required />
+    </div>
+
+    <div>
+      <label for="departmentId">Department:</label>
+
+      <select id="departmentId" formControlName="departmentId" class="form-select" required>
+        <option selected></option>
+        @for(item of departmentList;track item.id){
+        <option [value]="item.id">{{item.name}}</option>
+        }
+      </select>
+    </div>
+    <div>
+      <label for="roles">roles:</label>
+
+      <select multiple id="roles" formControlName="roles" class="form-select" required>
+        <option selected></option>
+        @for(item of rolesList;track item.id){
+        <option [value]="item.name">{{item.name}}</option>
+        }
+      </select>
+    </div>
+   
+    <div>
+      <label for="bId">BranchId:</label>
+      <input id="branchId" formControlName="branchId" type="text" required />
+    </div>
+    <div>
+      <label for="addedBy">addedBy:</label>
+      <input id="addedBy" formControlName="addedBy" type="text" required />
+    </div>
+
+
+    <!-- File Uploads -->
+
+    <div>
+      <label for="tImgF">Load your image:</label>
+      <input id="tImgF" type="file" (change)="onFileSelect($event, 'TImgF')" />
+    </div>
+
+    <button type="submit" [disabled]="!addModel.valid ||  !tImgF">
+      Submit
+    </button>
+  </form>
+  @if(responseMessage){
+  <div>
+    <p>{{ responseMessage }}</p>
+  </div>}
+</div>

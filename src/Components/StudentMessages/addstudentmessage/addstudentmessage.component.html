@@ -1,0 +1,31 @@
+<div class="m-5 p-5 shadow-lg rounded-3" style="width:  40%;">
+@if(getSClasses){<select class="form-select" (change)="getStudentToMoveM()" [(ngModel)]="getRequest.classId">
+  @for(item of getSClasses;track item){
+  <option [value]="item.id">{{item.name}}</option>
+  }
+</select>}
+<select class="form-select" (change)="getStudentToMoveM()" [(ngModel)]="getRequest.yearId">
+  @for(item of years;track item){
+  <option [value]="item.id">{{item.periodYear}}</option>}
+
+</select>
+@if(getStudentToMove){
+<select multiple class="form-select"  [(ngModel)]="messageAddModel.studentIds">
+  @for(item of getStudentToMove;track item){
+  <option [value]="item.studentId">{{item.studentName}}</option>}
+
+</select>}
+</div>
+  <div class="p-5 m-5 shadow-lg rounded-3">
+    <form (ngSubmit)="sendMessage()" #messageForm="ngForm">
+        <label for="name">Title</label>
+        <input class="form-control" type="text" name="name" [(ngModel)]="messageAddModel.name" required/>
+        
+
+      
+
+        <label for="content">Message Content</label>
+   <textarea class="form-control w-100" name="content" id="" style="height: 500px;" [(ngModel)]="messageAddModel.content" required></textarea>
+<div>
+        <button class="btn btn-primary" type="submit">Send Message</button></div>
+    </form></div>

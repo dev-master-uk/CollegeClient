@@ -1,0 +1,136 @@
+@if(studentModel){
+<div class="m-5 shadow-lg">
+  <h3><b>Student Dashboard</b></h3>
+
+  <section class="d-flex justify-content-around pb-5">
+  
+    <div>
+      <!--student photo-->
+      @if(profileImg){
+      <div>
+        <img class="rounded" [src]="profileImg.path" alt="student photo" width="300" /><br>
+        <a [href]="profileImg.path">View Photo</a>
+      </div>}
+      @else{
+      <div>
+        <img class="rounded " src="https://localhost:7009/Resorces/StudentImg/defaultstudentt.png" alt="student photo" width="300" />
+      </div>
+      }
+</div>
+      <section class="st-modal" [ngClass]="{'d-block':isVideoLessonsModalVisible,'d-none': !isVideoLessonsModalVisible}">
+        <p>Video Lessons</p>
+        @if(videoLessons && videoLessons.length > 0){
+          <div class="d-flex justify-content-between flex-wrap">
+            @for(item of videoLessons; track item){
+              <video [src]="item.path" width="200" controls></video>
+            }
+          </div>
+        }
+        <button type="button" class="closebutton btn btn-light" (click)="closeVideoLessonsModal()">X</button>
+        <a class="btn btn-primary" href="">Add document</a>
+      
+      </section>
+      
+      <section [ngClass]="{'d-block':isAttendanceModalVisible,'d-none': !isAttendanceModalVisible}" class="st-modal">
+        <p>Attendance</p>
+        <button type="button" class="closebutton btn btn-light" (click)="closeAttendancemodal()">X</button>
+        <a class="btn btn-primary" href="">Add Attendance</a>    
+      </section>
+    <!--start -->
+
+      <section class="st-modal" [ngClass]="{'d-block':isDiseasesModalVisible,'d-none': !isDiseasesModalVisible}">
+        <p>Diseases</p>
+        <button type="button" class="closebutton btn btn-danger" (click)="closeDiseasesmodal()">X</button>
+        
+      </section>  
+
+<!-- 
+      -->
+ <!--end -->
+
+       <section class="st-modal" [ngClass]="{'d-block':isphotoModalVisible,'d-none': !isphotoModalVisible}"
+   type="button">
+   <p>Photos</p>
+    @for(item of gallary; track item){
+          <a [href]="item.path">
+            <img [src]="item.path" width="200" class="p-lg-3 rounded"/>
+          </a>
+    }
+    <button type="button" class="closebutton btn btn-danger" (click)="closephotomodal()">X</button>
+  </section>
+
+<!--
+  <section class="st-modal" [ngClass]="{'d-block':isAddLevelModalVisible,'d-none': !isAddLevelModalVisible}">
+   
+    <button type="button" class="closebutton btn btn-light" (click)="closeAddmodal()">X</button>
+  </section>
+
+
+  <section class="st-modal" [ngClass]="{'d-block':isAddLevelModalVisible,'d-none': !isAddLevelModalVisible}">
+
+    <button type="button" class="closebutton btn btn-light" (click)="closeAddmodal()">X</button>
+  </section> -->
+      <!--<div>
+    <img src="{{student.photo}}" alt="student photo" />
+  </div>-->
+      <!--mat edit button,,,(click)="openDialog()"-->
+      <div style="margin-top:40px;">
+       
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Name:</mat-label>
+          <input matInput readonly [value]="studentModel.fullName" />
+        </mat-form-field>
+    
+      </div>
+    
+  </section>
+
+    <div class="buttonGrid d-flex justify-content-center flex-wrap">
+      <div class="pb-3">
+        <button mat-fab extended style="width:150px;height:150px;" (click)="openphotomodal()" type="button">
+           <mat-icon>photo</mat-icon>
+          Photos
+        </button>
+      </div>
+
+      <div class="pb-3">
+        <button mat-fab extended style="width:150px;height:150px;" (click)="openVideoLessonsModal()" type="button">
+         <i class="fas fa-file-alt"></i>
+          Show Video Lessons
+        </button>
+      </div>
+
+      <div class="pb-3">
+        <button mat-fab extended style="width:150px;height:150px;" (click)="openDiseasesmodal()" type="button">
+         <i class="fas fa-heartbeat"></i>
+          Chronic Diseases
+        </button>
+      </div>
+
+      <div class="pb-3">
+        <button mat-fab extended style="width:150px;height:150px;" (click)="openAttendancemodal()" type="button">
+          <i class="fas fa-calendar-check"></i>
+          Attendance
+        </button>
+      </div>
+
+      <div class="pb-3">
+        <button mat-fab extended style="width:150px;height:150px;">
+         <i class="fas fa-message"></i>
+          Messages
+        </button>
+      </div>
+
+      <div class="pb-3">
+        <button mat-fab extended style="width:150px;height:150px;">
+          <i class="fas fa-calendar-alt"></i>
+          Reports
+        </button>
+      </div>
+
+    </div>
+  
+  
+</div>
+ }
+@else { <p class="text-center">Loading ..............................</p>} 

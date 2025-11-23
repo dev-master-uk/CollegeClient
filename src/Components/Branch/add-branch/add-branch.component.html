@@ -1,0 +1,177 @@
+
+
+<div class="col-4 card container">
+  <h3>Register Now</h3>
+  <!--<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button>-->
+  <mat-stepper orientation="horizontal" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+
+        <div class="card">
+          <mat-form-field floatLable="auto" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" />
+
+
+          </mat-form-field>
+
+          <mat-form-field floatLable="auto" appearance="outline">
+            <mat-label>address</mat-label>
+            <input matInput formControlName="address" />
+            <button mat-icon-button
+                    matSuffix>
+              <mat-icon></mat-icon>
+            </button>
+
+            <mat-hint align="end">nnnnnnnnnn</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field floatLable="auto" appearance="outline">
+            <mat-label>website</mat-label>
+            <input matInput formControlName="website" />
+            <button mat-icon-button
+                    matSuffix>
+              <mat-icon></mat-icon>
+            </button>
+
+            <mat-hint align="end">nnnnnnnnnn</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field floatLable="auto" appearance="outline">
+            <mat-label>infoEmail</mat-label>
+            <input matInput formControlName="infoEmail" type="email" />
+            <mat-hint align="end">nnnnnnnnnn</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field floatLable="auto" appearance="outline">
+            <mat-label>phone</mat-label>
+            <input matInput formControlName="phone" />
+            <mat-hint align="end">nnnnnnnnnn</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field floatLable="auto" appearance="outline">
+            <mat-label>location</mat-label>
+            <input matInput formControlName="location" />
+            <mat-hint align="end">nnnnnnnnnn</mat-hint>
+          </mat-form-field>
+
+
+
+          <mat-form-field floatLable="auto" appearance="outline">
+            <mat-label>addedBy</mat-label>
+            <input matInput formControlName="addedBy" />
+            <mat-hint align="end">nnnnnnnnnn</mat-hint>
+          </mat-form-field>
+
+
+
+          <!-- File Uploads -->
+          <div>
+            <label for="mPhoto">Main Photo:</label>
+            <input id="mPhoto" type="file" (change)="onFileSelect($event, 'MPhoto')" />
+          </div>
+          <div>
+            <label for="logo">Logo:</label>
+            <input id="logo" type="file" (change)="onFileSelect($event, 'Logo')" />
+          </div>
+
+
+
+          <mat-form-field>
+            <mat-label>Organization</mat-label>
+            <mat-select formControlName="organizationId">
+
+              @for (item of selected; track item) {
+              <mat-option [value]="item.id">{{item.name}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+
+        </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>facebookUrl</mat-label>
+          <input matInput formControlName="facebookUrl" required />
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>twitterUrl</mat-label>
+          <input matInput formControlName="twitterUrl" required />
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>instagramUrl</mat-label>
+          <input matInput formControlName="instagramUrl" required />
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>youtubeUrl</mat-label>
+          <input matInput formControlName="youtubeUrl" required />
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>linkedinUrl</mat-label>
+          <input matInput formControlName="linkedinUrl" required />
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>snapchatUrl</mat-label>
+          <input matInput formControlName="snapchatUrl" required />
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>whatsappUrl</mat-label>
+          <input matInput formControlName="whatsappUrl" required />
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>telegramUrl</mat-label>
+          <input matInput formControlName="telegramUrl" required />
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>googleUrl</mat-label>
+          <input matInput formControlName="googleUrl" required />
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="onSupmit()">Submit</button>
+      </div>
+
+
+
+    </mat-step>
+  </mat-stepper>
+
+
+</div>

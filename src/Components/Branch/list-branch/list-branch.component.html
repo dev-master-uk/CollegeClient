@@ -1,0 +1,78 @@
+<!--<app-add-branch></app-add-branch>-->
+<section *ngIf="branches">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  <table mat-table [dataSource]="data" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> address </th>
+      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="infoEmail">
+      <th mat-header-cell *matHeaderCellDef> infoEmail </th>
+      <td mat-cell *matCellDef="let element"> {{element.infoEmail}} </td>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> phone </th>
+      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+    </ng-container>
+    <ng-container matColumnDef="website">
+      <th mat-header-cell *matHeaderCellDef> website </th>
+      <td mat-cell *matCellDef="let element"> {{element.website}} </td>
+    </ng-container>
+    <ng-container matColumnDef="orgName">
+      <th mat-header-cell *matHeaderCellDef> orgName </th>
+      <td mat-cell *matCellDef="let element"> {{element.orgName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="logoPhoto">
+      <th mat-header-cell *matHeaderCellDef> logoPhoto </th>
+      <td mat-cell *matCellDef="let element"> <img [src]="element.logoPhoto" width="50px" /> </td>
+    </ng-container>
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button class="btn bg-danger" type="button" (click)="onDelete(element.id)">X</button>
+        <a class="btn bg-danger"  href="/branchImg/{{element.id}}">AddImg</a>
+        <a class="btn bg-danger"  href="/level/{{element.id}}">AddLevel</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5,10,15,20]" showFirstLastButton class="bg-primary"></mat-paginator>
+  <!--<div *ngFor="let item of appoint">
+    {{item.id}}
+  </div>
+  @for(item of appoint;track item.id){
+  <li>{{item.price}}</li>-->
+
+</section>
+<!--<div class="images-container-modal" [ngClass]="{'d-block': isImageSelectorVisible, 'd-none': !isImageSelectorVisible}">
+  <button type="button" class="btn btn-light" style="position: fixed; top: 10px;right: 10px" (click)="closeImageSelector()">X</button>
+  <img src="public\WIN_20240416_14_29_44_Pro.jpg" />
+</div>-->
+<!--<button type="button" class="btn btn-light" (click)="openImageSelector()">Select Image</button>-->
+<!--<div *ngFor="let item of branches">
+  <img [src]="item.logoPhoto" width="50px" />
+</div>-->
+<img scr=""/>

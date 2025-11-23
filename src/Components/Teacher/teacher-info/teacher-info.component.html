@@ -1,0 +1,117 @@
+<div class="container shadow-lg align-content-center">
+<div><h2>Teacher Information</h2></div>
+
+<section class="container">
+  <div class="row row-cols-4 ">
+
+   
+    @for(item of classGList; track item.id) {
+  <div class="col card"  >
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1 text-decoration-underline">{{ item.name }}</h5>
+      <!-- <small>3 days ago</small> -->
+    </div>
+     @for(sitem of item.subjects; track sitem.id) {
+      <li class="list-group-item d-flex justify-content-between mb-2"><p>{{ sitem.name }}</p>
+<!--if sitem.id = TeacherclassAndSSubjectList.id-->
+   <button class="btn btn-success" (click)="addsubjectdue(sitem.sc)" type="submit"><i class="bi bi-plus"></i></button>
+   
+        </li>
+    }
+  
+  
+</div>}
+{{errorMessage}}
+</div>
+
+
+
+</section>
+  <div class="pb-3">
+    <img [src]="teacherModel.imgPath" alt="Profile Image" class="profile-image rounded-2" width="150"/>
+  </div>
+  
+  <!-- Display teacher information -->
+  <div class="teacher-details">
+    <mat-form-field appearance="fill" class="form-field ">
+      <mat-label>Name</mat-label>
+      <input matInput readonly [value]="teacherModel.title + '. ' + teacherModel.name"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Job Description</mat-label>
+      <input matInput readonly [value]="teacherModel.jopDescription"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email Address</mat-label>
+      <input matInput readonly [value]="teacherModel.email"/>
+    </mat-form-field>
+    
+<section class="row">
+<!-- Display list of classGroup names -->
+<div class="col-6 class-group-list">
+  <h6>Classes</h6>
+  <div><button mat-raised-button color="primary" (click)="showAddClassSection()" type="button" class="mt-2">Add Class</button></div>
+  <ul>
+    <li *ngFor="let classGroup of TeacherclassAndSSubjectList">Class :{{ classGroup.classGName }}.Subject:{{ classGroup.subjectName }}.
+   <button class="btn btn-white-outline" (click)="deleteClassFromTeacher(classGroup.id);"><mat-icon class="text-danger">delete</mat-icon></button></li>
+      
+  </ul>
+</div>
+
+<div class="col-6 class-group-list">
+  <h6>Subjects</h6>
+   <div><button mat-raised-button color="primary" (click)="showAddSubjectSection()" type="button" class="mt-2">Add Subjects</button></div>
+  <ul>
+    <li *ngFor="let subjectGroup of teacherModel.subjectNames">{{ subjectGroup.name }}
+    <button class="btn btn-white-outline" (click)="deleteSubjectFromTeacher(subjectGroup.id);"><mat-icon class="text-danger">delete</mat-icon></button></li>
+
+  </ul>
+</div>
+</section>
+</div>
+
+<section class="st-modal" [ngClass]="{'d-block':isAddClassSectionVisible,'d-none': !isAddClassSectionVisible}">
+    <!--update subject groups and class groups  -->
+    <div class="update-groups">
+      <h4>Update Class Groups</h4>
+      
+@for(classlist of classAndSSubjectList; track classlist.id) {
+  <li>Class :{{ classlist.classGName }}.Subject :{{ classlist.subjectName }}.
+    <button mat-raised-button color="primary" (click)="addsubjectdue(classlist.id)" type="submit"><i class="fas fa-plus"></i></button>
+  </li>
+}
+
+
+@if(errorMessage){
+<button class="{{errorMessageClass}}">{{ errorMessage }}</button>}
+
+<button type="button" class="closebutton btn btn-danger" (click)="closeshowAddClassSection()">X</button>
+
+        <!-- <button mat-raised-button color="primary" (click)="addsubjectdue()" type="submit">Updatecl</button> -->
+    
+    </div>
+</section>
+
+<section class="st-modal" [ngClass]="{'d-block':isAddSubjectSectionVisible,'d-none': !isAddSubjectSectionVisible}">
+    <!--update subject groups and class groups  -->
+    <div class="update-groups">
+      <h4>Update Subject Groups</h4>
+  
+
+<select class="form-select" multiple aria-label="Multiple select example" [(ngModel)]="addsub.SubjectIds">
+@for(subject of subjectList; track subject.id) {
+  <option value="{{subject.id}}">{{subject.name}}</option>
+}
+</select>
+@if(errorMessage){
+<button class="{{errorMessageClass}}">{{ errorMessage }}</button>}
+<button type="button" class="closebutton btn btn-danger" (click)="closeshowAddSubjectSection()">X</button>
+
+        <button mat-raised-button color="primary" (click)="addTeacherSubject()" type="button" class="mt-2">Update</button>
+
+    </div>
+</section>
+</div>
+<!---->

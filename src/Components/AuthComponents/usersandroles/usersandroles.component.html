@@ -1,0 +1,179 @@
+<div>
+  <table class=" table table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Email
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Phone
+        </th>
+        <th>
+          Roles
+        </th>
+        <th style="text-align:center">
+          Add Roles
+        </th>
+        <th>
+          Action
+        </th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+
+      <tr *ngFor="let item of users">
+        <td>
+          {{item.user.email}}
+        </td>
+        <td>
+          {{item.user.userName}}
+        </td>
+        <td>
+          {{item.phoneNumber}}
+        </td>
+        <td>
+          <div style="padding-right:10px">
+            <span *ngFor="let role of item.userRoles" style="color: forestgreen; margin-right: 10px">({{role}})</span>
+          </div>
+        </td>
+        <td>
+          <form #form="ngForm" (ngSubmit)="onaddrole(item.user.id)">
+            <div class="row">
+              <div class="col-sm-6">
+                Choose:<select type="text" id="role" name="role" class="form-select form-select-sm" [(ngModel)]="addrole.role">
+                  <option *ngFor="let role of roles" value="{{role.name}}">{{role.name}}</option>
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <button type="submit" style="color:aliceblue" class="btn btn-success">+/-</button>
+              </div>
+            </div>
+          </form>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="delete(item.user.id);ngOnInit()">Delete</button>
+       
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+//////////////////////////////////////////////////////////////////
+<div>
+  <table class=" table table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Email
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Phone
+        </th>
+
+        <th>
+          Add Roles
+        </th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+
+      <tr *ngFor="let item of users">
+        <td>
+          {{item.email}}
+        </td>
+        <td>
+          {{item.user.userName}}
+        </td>
+        <td>
+          {{item.phoneNumber}}
+        </td>
+        <td class="d-flex">
+
+          <div *ngFor="let ite of roles">
+
+            <input type="text"
+                   class="btn btn-danger btn-sm" style="margin-right:15px"
+                   value="{{ite.name}}" id="total" name="total"
+                   (click)="onchange(ite.name); onaddrole(item.user.id)"
+                   [ngClass]="{lllll:item.userRoles.includes(ite.name)}" />
+          </div>
+
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+//////////////////////////////////////////////////////////////////
+<div>
+  <table class=" table table-bordered">
+    <thead>
+      <tr>
+        <th>
+          Email
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Phone
+        </th>
+
+        <th>
+          Add Roles
+        </th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+
+      <tr *ngFor="let item of users">
+        <td>
+          {{item.email}}
+        </td>
+        <td>
+          {{item.user.userName}}
+        </td>
+        <td>
+          {{item.phoneNumber}}
+        </td>
+        <td class="d-flex">
+
+          <div *ngFor="let ite of roles">
+
+            <input type="text"
+                   class="btn btn-success btn-sm" style="margin-right:15px"
+                   value="{{ite.name}}" id="total" name="total"
+                   (click)="onchange(ite.name); onaddrole(item.user.id)"
+                   *ngIf="item.userRoles.includes(ite.name);else hhhh" />
+
+
+            <ng-template #hhhh>
+
+              <input type="text"
+                     class="btn btn-danger btn-sm" style="margin-right:15px"
+                     value="{{ite.name}}" id="total" name="total"
+                     (click)="onchange(ite.name); onaddrole(item.user.id)" />
+
+            </ng-template>
+          </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+

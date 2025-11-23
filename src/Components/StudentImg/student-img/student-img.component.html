@@ -1,0 +1,74 @@
+<section class="d-flex justify-content-around">
+
+  <!--img-->
+  <div style="margin-top:50px;margin-left:30px">
+    @if(getModel){
+    <div>
+      <img class="rounded" [src]="getModel.path" width="250" />
+    </div>
+    }
+    @else{
+    <!--img-->
+    <div>
+      <img class="rounded" src="https://localhost:7009/Resorces/StudentImg/defaultstudentt.png" width="250" />
+    </div>
+    }
+    <div class="mx-2">
+      <a class="btn btn-primary" href="stinfo/{{id}}">Back To Student Info</a>
+    </div>
+  </div>
+  <div class="organization-upload">
+    <h2>Upload Student Image Details</h2>
+    <form [formGroup]="addModel" (ngSubmit)="onSubmit()">
+      <!-- Organization Fields -->
+
+      <div>
+        <label for="description">description:</label>
+        <input id="description" formControlName="description" type="text" required />
+      </div>
+
+      <div>
+        <label for="type">type:</label>
+        <select id="type" class="form-control" formControlName="type" type="text" require>
+
+          <option value="Profile">Profile</option>
+          <option value="Galary">Galary</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="studentId">studentId:</label>
+        <input id="studentId" formControlName="studentId" type="text" required />
+      </div>  <div>
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name" type="text" required />
+      </div>
+      <div>
+        <label for="addedBy">addedBy:</label>
+        <input id="addedBy" formControlName="addedBy" type="text" required />
+      </div>
+      <div>
+        <label for="bId">bId :</label>
+        <input id="bId" formControlName="bId" type="text" required />
+      </div>
+
+      <!-- File Uploads -->
+
+
+
+
+      <div>
+        <label for="stImgF">Logo:</label>
+        <input id="stImgF" type="file" (change)="onFileSelect($event, 'StImgF')" />
+      </div>
+
+      <button type="submit" [disabled]="!addModel.valid || !stImgF">
+        Submit
+      </button>
+    </form>
+    <div *ngIf="responseMessage">
+      <p>{{ responseMessage }}</p>
+    </div>
+  </div>
+
+</section>

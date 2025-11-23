@@ -1,0 +1,48 @@
+<section class="container">
+  <div style="width:50%">
+    <h3>Add Class</h3>
+    <hr style="width:100%;text-align:left;margin-left:0">
+    <form [formGroup]="addModel">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <div class="card">
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+
+
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>levelId</mat-label>
+          <mat-select formControlName="levelId">
+            @for (item of getByBrId; track item) {
+            <mat-option [value]="item.id">{{item.name}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+
+
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>addedBy</mat-label>
+          <input matInput formControlName="addedBy" />
+          <button mat-icon-button matSuffix>
+            <mat-icon></mat-icon>
+          </button>
+
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field floatLable="auto" appearance="outline">
+          <mat-label>bid</mat-label>
+          <input matInput formControlName="bid" />
+          <mat-hint align="end">nnnnnnnnnn</mat-hint>
+        </mat-form-field>
+
+
+        <button mat-button (click)="addClassG()">Submit</button>
+
+      </div>
+
+    </form>
+  </div>
+</section>
